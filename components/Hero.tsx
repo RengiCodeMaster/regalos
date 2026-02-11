@@ -18,6 +18,10 @@ const Hero: React.FC = () => {
           src="/Gemini_Generated_Image_trp7dwtrp7dwtrp7.png"
           alt="Hero Background"
           className="w-full h-full object-cover object-center opacity-90"
+          fetchPriority="high"
+          loading="eager"
+          width={1920}
+          height={1080}
         />
         {/* Dark Overlay for Text Readability */}
         <div className="absolute inset-0 bg-black/60"></div>

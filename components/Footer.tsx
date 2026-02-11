@@ -10,11 +10,10 @@ const Footer: React.FC = () => {
           <div className="space-y-6">
             <div className="flex items-center gap-2">
               {/* Official Logo */}
-              <img
-                src="/unnamed-Photoroom.png"
-                alt="Detallitos Jany"
-                className="h-20 w-auto object-contain"
-              />
+              {/* Official Text Logo */}
+              <h1 className="text-2xl font-serif font-bold text-gray-800 tracking-wide">
+                Detallitos <span className="text-brand-red font-cursive text-3xl">Jany</span>
+              </h1>
             </div>
             <p className="text-gray-500 text-sm leading-relaxed">
               Transformamos sentimientos en detalles inolvidables.

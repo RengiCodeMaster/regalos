@@ -11,6 +11,14 @@ import HomePage from './pages/HomePage';
 import OccasionPage from './pages/OccasionPage';
 import CategoryPage from './pages/CategoryPage';
 import CatalogPage from './pages/CatalogPage';
+
+// Lazy loading is good, but for the main landing page (HomePage), it's often better to load it eagerly 
+// to avoid a flash of loading spinner on the very first visit.
+// However, secondary pages should absolutely be lazy loaded.
+
+const LazyOccasionPage = React.lazy(() => import('./pages/OccasionPage'));
+const LazyCategoryPage = React.lazy(() => import('./pages/CategoryPage'));
+const LazyCatalogPage = React.lazy(() => import('./pages/CatalogPage'));
 import { Category } from './types';
 import { PRODUCTS } from './constants';
 import { CartProvider } from './context/CartContext';
@@ -60,14 +68,20 @@ const App: React.FC = () => {
           <CartDrawer />
 
           <main className="flex-grow">
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/ocasion/:occasionSlug" element={<OccasionPage />} />
-              <Route path="/categoria/:categorySlug" element={<CategoryPage />} />
-              <Route path="/catalogo" element={<CatalogPage />} />
-              {/* Fallback route */}
-              <Route path="*" element={<HomePage />} />
-            </Routes>
+            <React.Suspense fallback={
+              <div className="flex items-center justify-center h-screen bg-[#FFFBFA]">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand-red"></div>
+              </div>
+            }>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/ocasion/:occasionSlug" element={<LazyOccasionPage />} />
+                <Route path="/categoria/:categorySlug" element={<LazyCategoryPage />} />
+                <Route path="/catalogo" element={<LazyCatalogPage />} />
+                {/* Fallback route */}
+                <Route path="*" element={<HomePage />} />
+              </Routes>
+            </React.Suspense>
           </main>
 
           <StickyWhatsApp />
