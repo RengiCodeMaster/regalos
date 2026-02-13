@@ -164,29 +164,33 @@ const Header: React.FC<HeaderProps> = ({ onSearch, onCategorySelect }) => {
           <div className="p-6 space-y-8 pb-20">
 
             {/* Main Navigation Links */}
-            <nav className="flex flex-col space-y-1">
+            {/* Main Navigation Links */}
+            <nav className="flex flex-col space-y-2">
               <Link
                 to="/"
                 onClick={() => {
                   setIsMobileMenuOpen(false);
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="text-lg font-medium text-gray-800 py-3 border-b border-gray-50 hover:text-brand-red flex justify-between items-center group"
+                className="flex items-center gap-3 p-4 rounded-2xl bg-gray-50 hover:bg-red-50 text-gray-800 font-medium transition-all group active:scale-[0.98]"
               >
-                Inicio
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-red opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm text-brand-red group-hover:scale-110 transition-transform">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>
+                </div>
+                <span className="text-lg font-serif">Inicio</span>
               </Link>
             </nav>
 
             {/* Categorías Section */}
+            {/* Categorías Section */}
             <div>
-              <p className="text-xs text-gray-400 uppercase tracking-widest font-bold mb-4 ml-1">Categorías</p>
+              <p className="text-xs text-brand-red uppercase tracking-widest font-bold mb-4 ml-1">Nuestras Categorías</p>
               <div className="grid grid-cols-2 gap-3">
                 {[
-                  { name: 'Ramos Buchones', path: '/categoria/ramos-buchones' },
-                  { name: 'Chocolates', path: '/categoria/chocolates' },
-                  { name: 'Peluches', path: '/categoria/peluches' }
-                ].map((item) => (
+                  { name: 'Ramos Buchones', path: '/categoria/ramos-buchones', icon: '🌹' },
+                  { name: 'Chocolates', path: '/categoria/chocolates', icon: '🍫' },
+                  { name: 'Peluches', path: '/categoria/peluches', icon: '🧸' }
+                ].map((item, index) => (
                   <Link
                     key={item.name}
                     to={item.path}
@@ -194,8 +198,9 @@ const Header: React.FC<HeaderProps> = ({ onSearch, onCategorySelect }) => {
                       setIsMobileMenuOpen(false);
                       setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
                     }}
-                    className="flex flex-col items-center justify-center p-3 rounded-xl bg-gray-50 hover:bg-red-50/50 transition-colors text-center gap-2 group border border-transparent hover:border-red-100"
+                    className={`flex flex-col items-center justify-center p-4 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md hover:border-red-100 transition-all text-center gap-2 group active:scale-[0.98] ${index === 2 ? 'col-span-2 flex-row gap-4' : ''}`}
                   >
+                    <span className="text-2xl filter drop-shadow-sm group-hover:scale-110 transition-transform">{item.icon}</span>
                     <span className="text-sm font-medium text-gray-700 group-hover:text-brand-red">{item.name}</span>
                   </Link>
                 ))}
