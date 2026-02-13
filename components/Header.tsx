@@ -185,9 +185,8 @@ const Header: React.FC<HeaderProps> = ({ onSearch, onCategorySelect }) => {
                 {[
                   { name: 'Ramos Buchones', path: '/categoria/ramos-buchones' },
                   { name: 'Chocolates', path: '/categoria/chocolates' },
-                  { name: 'Peluches', path: '/categoria/peluches' },
-                  { name: 'Catálogo', path: '/catalogo' }
-                ].map((item) => (
+                  { name: 'Peluches', path: '/categoria/peluches' }
+                ].map((item) =\u003e (
                   <Link
                     key={item.name}
                     to={item.path}
