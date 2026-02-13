@@ -49,17 +49,17 @@ const Header: React.FC<HeaderProps> = ({ onSearch, onCategorySelect }) => {
   return (
     <div
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled
-        ? 'bg-white shadow-md py-2 border-b border-gray-100'
-        : 'bg-gradient-to-b from-black/60 to-transparent py-6 border-none shadow-none'
+        ? 'bg-white shadow-md py-1.5 sm:py-2 border-b border-gray-100'
+        : 'bg-gradient-to-b from-black/60 to-transparent py-3 sm:py-6 border-none shadow-none'
         }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center gap-4">
 
           {/* Logo */}
-          <Link to="/" className="flex-shrink-0 flex flex-col cursor-pointer group pl-2" onClick={() => window.scrollTo(0, 0)}>
-            <h1 className={`text-2xl md:text-3xl font-serif font-bold tracking-wide transition-colors ${logoTextColor}`}>
-              Detallitos <span className="text-brand-red font-cursive text-3xl md:text-4xl">Jany</span>
+          <Link to="/" className="flex-shrink-0 flex flex-col cursor-pointer group pl-1 sm:pl-2" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+            <h1 className={`text-xl sm:text-2xl md:text-3xl font-serif font-bold tracking-wide transition-colors ${logoTextColor}`}>
+              Detallitos <span className="text-brand-red font-cursive text-2xl sm:text-3xl md:text-4xl">Jany</span>
             </h1>
           </Link>
 
@@ -68,7 +68,11 @@ const Header: React.FC<HeaderProps> = ({ onSearch, onCategorySelect }) => {
 
             {/* Desktop Navigation */}
             <nav className={`hidden lg:flex items-center space-x-6 text-xs font-bold tracking-widest uppercase ${navTextColor}`}>
-              <Link to="/" className={`${navHoverColor} transition-colors relative group py-2`}>
+              <Link
+                to="/"
+                className={`${navHoverColor} transition-colors relative group py-2`}
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              >
                 Inicio
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-red transition-all group-hover:w-full"></span>
               </Link>
@@ -163,7 +167,10 @@ const Header: React.FC<HeaderProps> = ({ onSearch, onCategorySelect }) => {
             <nav className="flex flex-col space-y-1">
               <Link
                 to="/"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
                 className="text-lg font-medium text-gray-800 py-3 border-b border-gray-50 hover:text-brand-red flex justify-between items-center group"
               >
                 Inicio
@@ -179,12 +186,15 @@ const Header: React.FC<HeaderProps> = ({ onSearch, onCategorySelect }) => {
                   { name: 'Ramos Buchones', path: '/categoria/ramos-buchones' },
                   { name: 'Chocolates', path: '/categoria/chocolates' },
                   { name: 'Peluches', path: '/categoria/peluches' },
-                  { name: 'Amor Eterno', path: 'catalogo' } // Redirect to catalog or specific
+                  { name: 'Catálogo', path: '/catalogo' }
                 ].map((item) => (
                   <Link
                     key={item.name}
                     to={item.path}
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
+                    }}
                     className="flex flex-col items-center justify-center p-3 rounded-xl bg-gray-50 hover:bg-red-50/50 transition-colors text-center gap-2 group border border-transparent hover:border-red-100"
                   >
                     <span className="text-sm font-medium text-gray-700 group-hover:text-brand-red">{item.name}</span>

@@ -11,8 +11,8 @@ interface CartContextType {
     isOpen: boolean;
     total: number;
     addItem: (product: Product) => void;
-    removeItem: (productId: number) => void;
-    updateQuantity: (productId: number, quantity: number) => void;
+    removeItem: (productId: string) => void;
+    updateQuantity: (productId: string, quantity: number) => void;
     toggleCart: () => void;
     clearCart: () => void;
     checkoutWhatsApp: () => void;
@@ -45,14 +45,14 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             }
             return [...prev, { ...product, quantity: 1 }];
         });
-        setIsOpen(true); // Open cart when adding item for feedback
+        // Don't auto-open cart - let customers continue browsing
     };
 
-    const removeItem = (id: number) => {
+    const removeItem = (id: string) => {
         setItems((prev) => prev.filter((item) => item.id !== id));
     };
 
-    const updateQuantity = (id: number, quantity: number) => {
+    const updateQuantity = (id: string, quantity: number) => {
         if (quantity < 1) {
             removeItem(id);
             return;
