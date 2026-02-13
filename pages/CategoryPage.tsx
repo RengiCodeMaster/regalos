@@ -39,24 +39,24 @@ const CategoryPage: React.FC = () => {
     }
 
     return (
-        <div className="pt-24 pb-12 bg-brand-cream min-h-screen">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-12">
-                    <span className="text-brand-red font-cursive text-3xl block mb-2">Colección Exclusiva</span>
-                    <h1 className="text-5xl font-serif font-bold text-gray-900 capitalize">
+        <div className="pt-16 sm:pt-20 pb-8 sm:pb-12 bg-gray-50 min-h-screen">
+            <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+                <div className="text-center mb-6 sm:mb-10">
+                    <span className="text-brand-red font-cursive text-xl sm:text-2xl block mb-2">Colección Exclusiva</span>
+                    <h1 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-gray-900 capitalize">
                         {activeCategory}
                     </h1>
                 </div>
 
                 {filteredProducts.length > 0 ? (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6 lg:gap-8">
                         {filteredProducts.map((product) => (
                             <ProductCard key={product.id} product={product} />
                         ))}
                     </div>
                 ) : (
-                    <div className="text-center py-20 bg-white rounded-3xl shadow-sm">
-                        <p className="text-xl text-gray-400">Pronto agregaremos productos a esta categoría.</p>
+                    <div className="text-center py-12 sm:py-20 bg-white rounded-2xl shadow-sm">
+                        <p className="text-base sm:text-xl text-gray-400">Pronto agregaremos productos a esta categoría.</p>
                     </div>
                 )}
             </div>
